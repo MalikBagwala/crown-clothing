@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import MenuItem from '../components/menu-item';
 import Menu from '../components/menu';
 const Wrapper = styled.div`
   display: flex;
@@ -9,7 +8,8 @@ const Wrapper = styled.div`
   padding: 20px 80px;
 `;
 
-const HomePage = () => {
+const HomePage = props => {
+  console.log(props);
   return (
     <Wrapper>
       <Menu />

@@ -1,10 +1,13 @@
 import React from 'react';
 import HomePage from './pages/homepage';
+import { Route, Switch } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+      </Switch>
+    </>
   );
 }
 
