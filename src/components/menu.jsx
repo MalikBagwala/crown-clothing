@@ -48,8 +48,8 @@ class Menu extends Component {
     const { items } = this.state;
     return (
       <DirectoryMenu>
-        {items.map(({ title, imageUrl, size }, index) => (
-          <MenuItem key={index} title={title} size={size} imgUrl={imageUrl} />
+        {items.map(({ ...MenuProps }, index) => (
+          <MenuItem key={index} {...MenuProps} />
         ))}
       </DirectoryMenu>
     );

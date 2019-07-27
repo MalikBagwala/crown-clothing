@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { withRouter } from 'react-router-dom';
 const Item = styled.div`
   min-width: 30%;
   height: ${props => (props.size === 'large' ? '380px' : '240px')};
@@ -61,10 +61,22 @@ const Subtitle = styled.span`
   font-size: 16px;
   text-transform: uppercase;
 `;
-const MenuItem = ({ title, imgUrl, size, subtitle = 'SHOP NOW' }) => {
+const MenuItem = ({
+  title,
+  imageUrl,
+  size,
+  subtitle = 'SHOP NOW',
+  linkUrl,
+  history,
+  match
+}) => {
   return (
-    <Item background={imgUrl} size={size}>
-      <Background background={imgUrl} size={size} />
+    <Item
+      background={imageUrl}
+      size={size}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
+      <Background background={imageUrl} size={size} />
       <Content>
         <Title>{title.toUpperCase()}</Title>
         <Subtitle>{subtitle}</Subtitle>
@@ -73,4 +85,4 @@ const MenuItem = ({ title, imgUrl, size, subtitle = 'SHOP NOW' }) => {
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);
