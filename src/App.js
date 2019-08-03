@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import HomePage from './pages/homepage';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import ShopPage from './pages/shop';
+import { connect } from 'react-redux';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Wrapper } from './common/utils';
 import Header from './components/header';
-import RegisterPage from './pages/register';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { connect } from 'react-redux';
+import HomePage from './pages/homepage';
+import RegisterPage from './pages/register';
+import ShopPage from './pages/shop';
 import { setCurrentUser } from './redux/actions/user.action';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/selectors/user.selector';
 class App extends Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
@@ -52,8 +54,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = root_state => ({
-  currentUser: root_state.user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
