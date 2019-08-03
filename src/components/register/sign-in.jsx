@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import FormInput from '../../common/FormInput';
 import Button from '../../common/Button';
 import { signInWithGoogle, auth } from '../../firebase/firebase.utils';
-
-const Div = styled.div``;
+import { withRouter } from 'react-router-dom';
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
@@ -29,6 +28,7 @@ class SignIn extends Component {
     const { email, password } = this.state;
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      this.props.history.push('/shop');
       this.setState({ email: '', password: '' });
     } catch (error) {
       console.log(error);
@@ -68,4 +68,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

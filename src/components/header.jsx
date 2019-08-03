@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../img/crown.svg';
 import { auth } from '../firebase/firebase.utils';
+import { connect } from 'react-redux';
 const Navbar = styled.header`
   display: flex;
   justify-content: space-between;
@@ -37,7 +38,7 @@ const SignOut = styled.span`
     color: gray !;
   }
 `;
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser: user }) => {
   return (
     <Navbar>
       <NavItem to="/">
@@ -46,14 +47,16 @@ const Header = ({ currentUser }) => {
       <div>
         <NavItem to="/shop">Shop</NavItem>
         <NavItem to="/contact">contact</NavItem>
-        {currentUser ? (
+        {user !== null ? (
           <SignOut onClick={() => auth.signOut()}>sign out</SignOut>
         ) : (
-          <NavItem to="/register">register</NavItem>
+          <NavItem to="/register">Sign In</NavItem>
         )}
       </div>
     </Navbar>
   );
 };
-
-export default Header;
+const mapStateToProps = root_state => ({
+  currentUser: root_state.user.currentUser
+});
+export default connect(mapStateToProps)(Header);
