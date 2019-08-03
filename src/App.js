@@ -15,7 +15,6 @@ class App extends Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      console.log(user);
       if (user) {
         const userRef = await createUserProfileDocument(user);
         userRef.onSnapshot(snapShot => {
@@ -33,6 +32,7 @@ class App extends Component {
   }
   render() {
     const { currentUser } = this.props;
+    console.log(currentUser);
     return (
       <Wrapper>
         <ToastContainer />
@@ -40,7 +40,12 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/register" component={RegisterPage} />
+          <Route
+            path="/register"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <RegisterPage />
+            }
+          />
         </Switch>
       </Wrapper>
     );
