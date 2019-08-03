@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Button from '../common/Button';
+import { addItem } from '../redux/actions/cart.action';
+import { connect } from 'react-redux';
 const Item = styled.div`
   width: 22%;
   display: flex;
@@ -16,6 +18,7 @@ const Image = styled.div`
   background-image: url(${props => props.imageUrl});
   background-position: center;
   margin-bottom: 5px;
+  /* position: relative; */
 `;
 
 const Footer = styled.footer`
@@ -27,10 +30,21 @@ const Footer = styled.footer`
 const Subtitle = styled.span`
   font-size: 1.4rem;
 `;
-const CollectionItem = ({ name, price, imageUrl }) => {
+const CollectionButton = styled(Button)`
+  /* position: absolute;
+  top: 40%;
+  width: 240px;
+  z-index: */
+`;
+const CollectionItem = ({ item, addItem }) => {
+  const { name, price, imageUrl } = item;
+
   return (
     <Item>
       <Image imageUrl={imageUrl} />
+      <CollectionButton onClick={() => addItem(item)}>
+        ADD TO CART
+      </CollectionButton>
       <Footer>
         <Subtitle>{name}</Subtitle>
         <Subtitle>{price} $</Subtitle>
@@ -38,5 +52,15 @@ const CollectionItem = ({ name, price, imageUrl }) => {
     </Item>
   );
 };
+const mapStateToProps = root_state => ({
+  currentUser: root_state.user.currentUser
+});
 
-export default CollectionItem;
+const mapDispatchToProps = dispatch => ({
+  // The component will recieve setCurrentUser a function from props
+  addItem: item => dispatch(addItem(item))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CollectionItem);

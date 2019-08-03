@@ -3,6 +3,7 @@ import { ReactComponent as ShoppingIcon } from '../img/shopping-bag.svg';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleCart } from '../redux/actions/cart.action';
+import { selectCartItemsCount } from '../redux/selectors/cart.selector';
 const Cart = styled.span`
   margin-left: 1rem;
   width: 45px;
@@ -24,20 +25,23 @@ const ItemCount = styled.span`
   font-weight: bold;
   bottom: 12px;
 `;
-const CartIcon = ({ toggleCart }) => {
+const CartIcon = ({ toggleCart, totalItems }) => {
   return (
     <Cart onClick={toggleCart}>
       <Icon />
-      <ItemCount>0</ItemCount>
+      <ItemCount>{totalItems}</ItemCount>
     </Cart>
   );
 };
 
+const mapStateToProps = state => ({
+  totalItems: selectCartItemsCount(state)
+});
 const mapDispatchToProps = dispatch => ({
   // The component will recieve toggleCart a function from props
   toggleCart: () => dispatch(toggleCart())
 });
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CartIcon);
