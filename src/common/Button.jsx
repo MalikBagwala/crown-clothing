@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Btn = styled.button`
-  width: 40%;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
