@@ -8,6 +8,8 @@ import {
   selectCartHidden,
   selectCartItems
 } from '../redux/selectors/cart.selector';
+import { withRouter } from 'react-router-dom';
+import { toggleCart } from '../redux/actions/cart.action';
 const Div = styled.div`
   position: absolute;
   width: 240px;
@@ -31,7 +33,7 @@ const CartItems = styled.div`
 const CartButton = styled(Button)`
   margin-top: auto;
 `;
-const CartDropdown = ({ cartHidden, cartItems }) => {
+const CartDropdown = ({ cartHidden, cartItems, history, toggleCart }) => {
   console.log(cartItems);
   return cartHidden ? null : (
     <Div>
@@ -40,7 +42,14 @@ const CartDropdown = ({ cartHidden, cartItems }) => {
           <CartItem item={item} />
         ))}
       </CartItems>
-      <CartButton>Go To Checkout</CartButton>
+      <CartButton
+        onClick={() => {
+          toggleCart();
+          history.push('/checkout');
+        }}
+      >
+        Go To Checkout
+      </CartButton>
     </Div>
   );
 };
@@ -49,4 +58,13 @@ const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
   cartItems: selectCartItems
 });
-export default connect(mapStateToProps)(CartDropdown);
+const mapDispatchToProps = dispatch => ({
+  // The component will recieve setCurrentUser a function from props
+  toggleCart: () => dispatch(toggleCart())
+});
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CartDropdown)
+);
