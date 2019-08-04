@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { clearItem, addItem, removeItem } from '../redux/actions/cart.action';
 
 const Div = styled.div`
   width: 100%;
@@ -38,23 +39,42 @@ const RemoveButton = styled.div`
   cursor: pointer;
 `;
 
-const CartCheckoutItem = ({ cartItem }) => {
+const CartCheckoutItem = ({ cartItem, clearItem, removeItem, addItem }) => {
   return (
     <Div>
       <ImageContainer>
         <IMG src={cartItem.imageUrl} />
       </ImageContainer>
       <Span>{cartItem.name}</Span>
-      <Quantity>{cartItem.quantity}</Quantity>
+      <Quantity>
+        <span
+          style={{ marginRight: 5, cursor: 'pointer' }}
+          onClick={() => addItem(cartItem)}
+        >
+          &#10094;
+        </span>
+        {cartItem.quantity}
+        <span
+          style={{ marginLeft: 5, cursor: 'pointer' }}
+          onClick={() => removeItem(cartItem)}
+        >
+          &#10095;
+        </span>
+      </Quantity>
       <Span>${cartItem.price}</Span>
-      <RemoveButton>&#10006;</RemoveButton>
+      <RemoveButton onClick={e => clearItem(cartItem.id)}>
+        &#10006;
+      </RemoveButton>
     </Div>
   );
 };
-const mapStateToProps = createStructuredSelector({});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  clearItem: itemID => dispatch(clearItem(itemID)),
+  addItem: item => dispatch(addItem(item)),
+  removeItem: item => dispatch(removeItem(item))
+});
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(CartCheckoutItem);

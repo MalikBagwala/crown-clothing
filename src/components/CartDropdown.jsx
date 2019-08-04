@@ -35,7 +35,6 @@ const CartButton = styled(Button)`
   margin-top: auto;
 `;
 const CartDropdown = ({ cartHidden, cartItems, history, toggleCart }) => {
-  console.log(cartItems);
   return cartHidden ? null : (
     <Div>
       <CartItems>
