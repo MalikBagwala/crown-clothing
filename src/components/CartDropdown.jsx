@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CartItem from './CartItem';
 import { createStructuredSelector } from 'reselect';
+
 import {
   selectCartHidden,
   selectCartItems
