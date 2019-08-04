@@ -4,7 +4,7 @@ import Button from '../common/Button';
 import { addItem } from '../redux/actions/cart.action';
 import { connect } from 'react-redux';
 const Item = styled.div`
-  width: 22%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
