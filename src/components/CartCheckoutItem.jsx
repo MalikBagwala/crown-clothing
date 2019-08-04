@@ -49,14 +49,14 @@ const CartCheckoutItem = ({ cartItem, clearItem, removeItem, addItem }) => {
       <Quantity>
         <span
           style={{ marginRight: 5, cursor: 'pointer' }}
-          onClick={() => addItem(cartItem)}
+          onClick={() => removeItem(cartItem)}
         >
           &#10094;
         </span>
         {cartItem.quantity}
         <span
           style={{ marginLeft: 5, cursor: 'pointer' }}
-          onClick={() => removeItem(cartItem)}
+          onClick={() => addItem(cartItem)}
         >
           &#10095;
         </span>

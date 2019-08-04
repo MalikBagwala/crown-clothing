@@ -7,6 +7,7 @@ import {
   selectCartTotal
 } from '../redux/selectors/cart.selector';
 import CartCheckoutItem from '../components/CartCheckoutItem';
+import StripeButton from '../common/StripeButton';
 const Div = styled.div`
   width: 55%;
   min-height: 90vh;
@@ -33,8 +34,22 @@ const HeaderBlock = styled.div`
   }
 `;
 
+const Warning = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const H4 = styled.h4`
+  color: red;
+`;
+
+const P = styled.p`
+  margin: 3px 0;
+  color: red;
+  font-size: 1.3rem;
+`;
+
 const CheckoutPage = ({ cartItems, cartTotal }) => {
-  console.log(cartTotal);
   return (
     <Div>
       <Header>
@@ -47,7 +62,23 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
       {cartItems.map(cartItem => (
         <CartCheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <h2>TOTAL - ${cartTotal}</h2>
+      <div
+        style={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center'
+        }}
+      >
+        <h2 style={{ marginRight: 20 }}>TOTAL - ${cartTotal}</h2>
+        <StripeButton price={cartTotal} />
+      </div>
+      <Warning>
+        <H4>*Test Card Details*</H4>
+        <P>Card Number : 4242 4242 4242 4242 </P>
+        <P>Expiration Date : 02/30 </P>
+        <P>CVV : 999 </P>
+      </Warning>
     </Div>
   );
 };
