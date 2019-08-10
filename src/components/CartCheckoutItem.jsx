@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-import { clearItem, addItem, removeItem } from '../redux/actions/cart.action';
+import styled from 'styled-components';
+import { addItem, clearItem, removeItem } from '../redux/actions/cart.action';
+
 
 const Div = styled.div`
   width: 100%;

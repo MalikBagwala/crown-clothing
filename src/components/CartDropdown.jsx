@@ -39,7 +39,7 @@ const CartDropdown = ({ cartHidden, cartItems, history, toggleCart }) => {
     <Div>
       <CartItems>
         {cartItems.map(item => (
-          <CartItem item={item} />
+          <CartItem key={item.id} item={item} />
         ))}
       </CartItems>
       <CartButton

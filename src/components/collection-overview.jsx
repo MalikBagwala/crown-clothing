@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import styled from 'styled-components';
-import {
-  selectCollections,
-  selectCollectionsForPreview
-} from '../redux/selectors/shop.selector';
+import { selectCollectionsForPreview } from '../redux/selectors/shop.selector';
 import CollectionPreview from './collection';
 
 const Div = styled.div`
