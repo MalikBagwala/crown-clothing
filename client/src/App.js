@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { createStructuredSelector } from 'reselect';
 import { Wrapper } from './common/utils';
 import Header from './components/header';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import CheckoutPage from './pages/checkout';
 import HomePage from './pages/homepage';
 import RegisterPage from './pages/register';
 import ShopPage from './pages/shop';
 import { setCurrentUser } from './redux/actions/user.action';
-import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/selectors/user.selector';
-import CheckoutPage from './pages/checkout';
 class App extends Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
