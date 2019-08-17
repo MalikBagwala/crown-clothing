@@ -23,8 +23,9 @@ const Items = styled.div`
   }
 `;
 
-const CategoryPage = ({ collection }) => {
+const CategoryPage = ({ collection = { items: [] }, match }) => {
   const { title, items } = collection;
+  // console.log(state);
   return (
     <Div>
       <H1>{title}</H1>
@@ -38,11 +39,12 @@ const CategoryPage = ({ collection }) => {
         ))}
       </Items>
     </Div>
+
   );
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.category)(state)
+  collection: state.shop.collections.find(c => c.routeName === ownProps.match.params.category)
 });
 export default connect(
   mapStateToProps,

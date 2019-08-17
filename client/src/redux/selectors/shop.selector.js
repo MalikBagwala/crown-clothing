@@ -15,5 +15,6 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = collectionID =>
   createSelector(
     [selectCollections],
-    collections => collections[collectionID]
+    collections =>
+      collections ? collections.find(c => c.routeName === collectionID) : {}
   );
