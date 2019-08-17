@@ -1,8 +1,20 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { toast } from 'react-toastify';
-const onToken = token => {
-  toast.success('Payment done successfully!');
+import axios from "axios";
+const onToken = (token, amount) => {
+  axios({
+    url: "payment",
+    method: "post",
+    data: {
+      amount,
+      token
+    }
+  }).then(res => {
+    toast.success('Payment done successfully!');
+  }).catch(err => {
+    toast.warn('There was an issue with your payment!');
+  })
 };
 const StripeButton = ({ price }) => {
   const stripeCurrency = price * 100;
@@ -18,7 +30,7 @@ const StripeButton = ({ price }) => {
       amount={stripeCurrency}
       shippingAddress
       billingAddress={false}
-      token={onToken} // submit callback
+      token={token => onToken(token, stripeCurrency)} // submit callback
     />
   );
 };

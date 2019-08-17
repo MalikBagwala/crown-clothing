@@ -1,13 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import {
-  selectCartItems,
-  selectCartTotal
-} from '../redux/selectors/cart.selector';
-import CartCheckoutItem from '../components/CartCheckoutItem';
+import styled from 'styled-components';
 import StripeButton from '../common/StripeButton';
+import CartCheckoutItem from '../components/CartCheckoutItem';
+import { selectCartItems, selectCartTotal } from '../redux/selectors/cart.selector';
 const Div = styled.div`
   width: 55%;
   min-height: 90vh;
