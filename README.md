@@ -1,5 +1,5 @@
 <div align="center">
-<a align="center" href="https://crown-clothing-malik-live.herokuapp.com/"><img align="center" width="100%" src="https://github.com/MalikBagwala/lights-out/blob/master/img/lights-out.gif" /></a>
+<a align="center" href="https://crown-clothing-malik-live.herokuapp.com/"><img align="center" width="100%" src="https://github.com/MalikBagwala/crown-clothing/blob/master/img/crown-clothing.jpg" /></a>
 
 ## Available Scripts
 
