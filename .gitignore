@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+application.txt
 # dependencies
 /node_modules
 /client/node_modules
